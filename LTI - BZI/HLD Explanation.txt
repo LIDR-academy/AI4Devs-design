@@ -1,0 +1,17 @@
+Explanation
+Frontend: The user interfaces for different roles (Job Seeker, HR Manager, Recruiter, Admin) are built using modern web technologies and frameworks.
+
+Backend: The core logic of the application, implemented with RESTful APIs and business logic to handle various functionalities.
+
+Database: Stores all the entities and relationships required for the ATS. Relational databases like PostgreSQL are used, with optional NoSQL databases like MongoDB for specific needs.
+
+Authentication & Authorization: Ensures secure access to the system using OAuth 2.0, JWT, and LDAP for enterprise integrations.
+
+File Storage: Handles the storage of resumes and other documents using cloud storage solutions.
+
+Notification System: Manages email, SMS, and in-app notifications using services like SendGrid, Twilio, and Firebase Cloud Messaging.
+AI and Machine Learning: Utilizes TensorFlow and PyTorch for implementing resume screening and job matching functionalities.
+
+Analytics and Reporting: Provides real-time analytics and reporting capabilities using tools like Apache Kafka, Apache Spark, Tableau, and Power BI.
+
+DevOps and Deployment: Ensures smooth CI/CD and deployment using tools like Jenkins, CircleCI, Docker, Kubernetes, and cloud platforms like AWS, Google Cloud, and Azure.

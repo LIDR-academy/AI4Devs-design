@@ -1,0 +1,15 @@
+Explanation
+Context Diagram
+Job Seeker, HR Manager, Recruiter, Admin: These are the primary users who interact with the LTI ATS backend system.
+LTI ATS Backend: Represents the backend system comprising various layers and services.
+External Systems: Job boards, Email services, SMS services, and Social media platforms interact with the backend for job postings, notifications, etc.
+Container Diagram
+Frontend: Interacts with the backend through HTTP requests.
+API Layer: Handles incoming HTTP requests and forwards them to the Business Logic Layer.
+Business Logic Layer: Contains the core functionality and interacts with various subsystems.
+Database: Includes relational (PostgreSQL) and NoSQL (MongoDB) databases.
+Authentication & Authorization: Manages user authentication using OAuth 2.0, JWT, and LDAP.
+File Storage: Stores resumes and other documents using cloud storage solutions like AWS S3, Google Cloud Storage, and Azure Blob Storage.
+Notification System: Manages email, SMS, and in-app notifications using SendGrid, Twilio, and Firebase Cloud Messaging.
+AI & Machine Learning: Implements resume screening and job matching using TensorFlow and PyTorch.
+Analytics & Reporting: Provides real-time analytics and reporting capabilities using Apache Kafka, Apache Spark, Tableau, and Power BI.
