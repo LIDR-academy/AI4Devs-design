@@ -1,0 +1,52 @@
+@startuml ATS - Casos de Uso Principales
+
+left to right direction
+skinparam packageStyle rectangle
+
+actor Reclutador as R
+actor Candidato as C
+actor "Sistema IA" as IA
+actor Administrador as A
+
+rectangle "Publicación e Integración Multicanal" {
+  usecase "Publicar oferta en múltiples canales" as UC1
+  usecase "Consolidar aplicaciones" as UC2
+  usecase "Buscar candidatos proactivamente" as UC3
+  usecase "Monitorear rendimiento de ofertas" as UC4
+  usecase "Gestionar integraciones de plataformas" as UC5
+}
+
+rectangle "Gestión Inteligente de Candidatos con IA" {
+  usecase "Analizar predictivamente candidatos" as UC6
+  usecase "Recomendar candidatos para puestos" as UC7
+  usecase "Preseleccionar automáticamente candidatos" as UC8
+  usecase "Configurar criterios de selección IA" as UC9
+}
+
+rectangle "Automatización Avanzada del Proceso" {
+  usecase "Programar entrevistas inteligentemente" as UC10
+  usecase "Enviar comunicaciones automatizadas" as UC11
+  usecase "Asignar tareas automáticamente" as UC12
+  usecase "Gestionar flujo del proceso de selección" as UC13
+}
+
+R --> UC1
+R --> UC4
+R --> UC7
+R --> UC10
+R --> UC13
+
+C --> UC2
+
+IA --> UC3
+IA --> UC6
+IA --> UC7
+IA --> UC8
+IA --> UC10
+IA --> UC11
+IA --> UC12
+
+A --> UC5
+A --> UC9
+
+@enduml

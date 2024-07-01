@@ -1,0 +1,88 @@
+@startuml ATS - Modelo de Datos
+
+entity "Reclutador" {
+  * id: UUID
+  * nombre: String
+  * email: String
+  * telefono: String
+}
+
+entity "Candidato" {
+  * id: UUID
+  * nombre: String
+  * email: String
+  * telefono: String
+  * perfilLinkedIn: String
+  * perfilGitHub: String
+}
+
+entity "Oferta" {
+  * id: UUID
+  * titulo: String
+  * descripcion: Text
+  * fechaPublicacion: Date
+  * estado: String
+}
+
+entity "Aplicacion" {
+  * id: UUID
+  * fecha: Date
+  * estado: String
+}
+
+entity "Canal" {
+  * id: UUID
+  * nombre: String
+  * tipo: String
+}
+
+entity "IntegracionPlataforma" {
+  * id: UUID
+  * plataforma: String
+  * estado: String
+}
+
+entity "CriterioIA" {
+  * id: UUID
+  * nombre: String
+  * descripcion: Text
+}
+
+entity "Entrevista" {
+  * id: UUID
+  * fecha: Date
+  * hora: Time
+  * modo: String
+  * estado: String
+}
+
+entity "Tarea" {
+  * id: UUID
+  * descripcion: Text
+  * asignadoA: String
+  * estado: String
+}
+
+entity "ReporteRendimiento" {
+  * id: UUID
+  * ofertaId: UUID
+  * numAplicaciones: Int
+  * numSeleccionados: Int
+  * numContratados: Int
+}
+
+Reclutador "1" -- "0..*" Oferta : publica >
+Reclutador "1" -- "0..*" Tarea : asigna >
+Oferta "1" -- "0..*" Aplicacion : recibe >
+Oferta "1" -- "0..*" Canal : publica_en >
+Oferta "1" -- "0..*" ReporteRendimiento : tiene >
+Candidato "1" -- "0..*" Aplicacion : aplica >
+Candidato "1" -- "0..*" Entrevista : tiene >
+Aplicacion "1" -- "0..*" Entrevista : resulta_en >
+Aplicacion "1" -- "0..*" Tarea : genera >
+Canal "1" -- "0..*" IntegracionPlataforma : tiene >
+IntegracionPlataforma "0..*" -- "1" Administrador : gestiona >
+CriterioIA "1" -- "0..*" Aplicacion : aplica_a >
+SistemaIA "0..*" -- "1" CriterioIA : configura >
+
+@enduml

@@ -1,0 +1,36 @@
+@startuml C4_Context_Updated
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Diagrama de Contexto para el Sistema ATS
+
+Person(admin, "Administrador", "Gestiona las integraciones de IA y plataformas")
+Person(recruiter, "Reclutador", "Profesional de recursos humanos que gestiona el proceso de contratación")
+Person(candidate, "Candidato", "Persona que busca empleo y aplica a ofertas de trabajo")
+
+System(ats, "Sistema ATS", "Applicant Tracking System para gestionar el proceso de reclutamiento y selección")
+
+System_Ext(linkedin, "LinkedIn", "Plataforma de redes profesionales")
+System_Ext(indeed, "Indeed", "Portal de búsqueda de empleo")
+System_Ext(github, "GitHub", "Plataforma de desarrollo colaborativo")
+
+System_Ext(email_system, "Sistema de Email", "Sistema para enviar notificaciones por correo electrónico")
+System_Ext(calendar_system, "Sistema de Calendario", "Sistema para gestionar eventos y programar entrevistas")
+
+System_Ext(ai_system, "Sistema de IA", "Proporciona análisis y recomendaciones basadas en IA")
+
+Rel(admin, ats, "Configura y gestiona integraciones de IA y plataformas")
+Rel(recruiter, ats, "Utiliza para gestionar ofertas y candidatos")
+Rel(candidate, ats, "Utiliza para buscar ofertas y aplicar")
+
+Rel(ats, linkedin, "Publica ofertas y busca candidatos")
+Rel(ats, indeed, "Publica ofertas")
+Rel(ats, github, "Obtiene información de perfiles de desarrolladores")
+
+Rel(ats, email_system, "Envía notificaciones")
+Rel(ats, calendar_system, "Programa entrevistas")
+
+Rel(ats, ai_system, "Utiliza para análisis de candidatos y recomendaciones")
+
+@enduml
