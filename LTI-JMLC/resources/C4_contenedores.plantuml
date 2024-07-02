@@ -1,0 +1,78 @@
+@startuml C4_Containers
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Diagrama de Contenedores para el Sistema ATS
+
+Person(admin, "Administrador", "Gestiona las integraciones de IA y plataformas")
+Person(recruiter, "Reclutador", "Profesional de recursos humanos que gestiona el proceso de contratación")
+Person(candidate, "Candidato", "Persona que busca empleo y aplica a ofertas de trabajo")
+
+System_Boundary(ats, "Sistema ATS") {
+    Container(web_app_recruiter, "Aplicación Web Reclutadores", "React.js", "Interfaz de usuario para reclutadores")
+    Container(web_app_candidate, "Aplicación Web Candidatos", "React.js", "Interfaz de usuario para candidatos")
+
+    Container(api_gateway, "API Gateway", "AWS API Gateway", "Gestiona el acceso a los servicios backend")
+
+    Container(auth_service, "Servicio de Autenticación", "AWS Cognito", "Gestiona la autenticación y autorización")
+
+    Container(recruiter_services, "Servicios Reclutadores", "Node.js, Python, Java (EKS)", "Servicios para gestión de ofertas, integraciones y automatización")
+    Container(candidate_services, "Servicios Candidatos", "Node.js, Python, Java (EKS)", "Servicios para gestión de candidatos, aplicaciones y entrevistas")
+
+    ContainerDb(rds_db, "Base de Datos Relacional", "Amazon RDS (PostgreSQL, MySQL)", "Almacena datos estructurados")
+    ContainerDb(dynamo_db, "Base de Datos NoSQL", "Amazon DynamoDB", "Almacena datos no estructurados")
+
+    Container(cache, "Servicio de Caché", "Amazon ElastiCache (Redis)", "Almacena datos en caché para mejorar el rendimiento")
+    Container(message_queue, "Cola de Mensajes", "Amazon SQS/SNS", "Gestiona la comunicación asíncrona entre servicios")
+
+    ContainerDb(s3, "Almacenamiento de Objetos", "Amazon S3", "Almacena archivos y documentos")
+    ContainerDb(data_warehouse, "Data Warehouse", "Amazon Redshift", "Almacena datos para análisis")
+}
+
+System_Ext(linkedin, "LinkedIn")
+System_Ext(indeed, "Indeed")
+System_Ext(github, "GitHub")
+System_Ext(email_system, "Sistema de Email")
+System_Ext(calendar_system, "Sistema de Calendario")
+System_Ext(ai_system, "Sistema de IA")
+
+Rel(admin, web_app_recruiter, "Utiliza", "HTTPS")
+Rel(recruiter, web_app_recruiter, "Utiliza", "HTTPS")
+Rel(candidate, web_app_candidate, "Utiliza", "HTTPS")
+
+Rel(web_app_recruiter, api_gateway, "Realiza peticiones a", "JSON/HTTPS")
+Rel(web_app_candidate, api_gateway, "Realiza peticiones a", "JSON/HTTPS")
+
+Rel(api_gateway, auth_service, "Valida tokens con")
+Rel(api_gateway, recruiter_services, "Enruta peticiones a")
+Rel(api_gateway, candidate_services, "Enruta peticiones a")
+
+Rel(recruiter_services, rds_db, "Lee/Escribe")
+Rel(recruiter_services, dynamo_db, "Lee/Escribe")
+Rel(candidate_services, rds_db, "Lee/Escribe")
+Rel(candidate_services, dynamo_db, "Lee/Escribe")
+
+Rel(recruiter_services, cache, "Lee/Escribe")
+Rel(candidate_services, cache, "Lee/Escribe")
+
+Rel(recruiter_services, message_queue, "Publica/Consume mensajes")
+Rel(candidate_services, message_queue, "Publica/Consume mensajes")
+
+Rel(recruiter_services, s3, "Lee/Escribe archivos")
+Rel(candidate_services, s3, "Lee/Escribe archivos")
+
+Rel(recruiter_services, data_warehouse, "Envía datos para análisis")
+Rel(candidate_services, data_warehouse, "Envía datos para análisis")
+
+Rel(recruiter_services, linkedin, "Integra con", "API")
+Rel(recruiter_services, indeed, "Integra con", "API")
+Rel(recruiter_services, github, "Integra con", "API")
+Rel(recruiter_services, email_system, "Envía emails a través de")
+Rel(recruiter_services, calendar_system, "Programa eventos a través de")
+Rel(recruiter_services, ai_system, "Utiliza para análisis")
+
+Rel(candidate_services, email_system, "Envía emails a través de")
+Rel(candidate_services, ai_system, "Utiliza para recomendaciones")
+
+@enduml

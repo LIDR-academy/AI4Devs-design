@@ -1,0 +1,61 @@
+@startuml C4_Components_Grouped
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_TOP_DOWN()
+LAYOUT_WITH_LEGEND()
+
+title Diagrama de Componentes del Servicio de Gestión de Publicación de Ofertas
+
+Container_Boundary(job_posting_service, "Servicio de Gestión de Publicación de Ofertas") {
+    Together {
+        Component(create_controller, "Controlador de Creación", "Express.js", "Maneja las peticiones de creación de ofertas")
+        Component(update_controller, "Controlador de Actualización", "Express.js", "Maneja las peticiones de actualización de ofertas")
+        Component(delete_controller, "Controlador de Eliminación", "Express.js", "Maneja las peticiones de eliminación de ofertas")
+        Component(search_controller, "Controlador de Búsqueda", "Express.js", "Maneja las peticiones de búsqueda de ofertas")
+    }
+
+    Together {
+        Component(job_posting_manager, "Gestor de Ofertas", "Node.js", "Lógica de negocio para la gestión de ofertas")
+        Component(validation_component, "Componente de Validación", "Node.js", "Valida los datos de las ofertas")
+        Component(publication_scheduler, "Programador de Publicaciones", "Node.js", "Gestiona la programación de publicaciones")
+        Component(channel_integration, "Integración de Canales", "Node.js", "Gestiona la publicación en diferentes canales")
+        Component(analytics_component, "Componente de Analítica", "Node.js", "Recopila y procesa datos de rendimiento de las ofertas")
+        Component(data_access, "Capa de Acceso a Datos", "Sequelize ORM", "Gestiona las operaciones de base de datos")
+    }
+}
+
+Container(rds_db, "Base de Datos RDS", "PostgreSQL", "Almacenamiento persistente de datos")
+Container(cache, "ElastiCache", "Redis", "Almacenamiento en caché")
+Container(s3, "Amazon S3", "Almacenamiento de objetos", "Almacena archivos adjuntos de las ofertas")
+Container(sns, "Amazon SNS", "Servicio de notificaciones", "Gestiona la comunicación asíncrona entre componentes")
+
+System_Ext(linkedin_api, "API de LinkedIn")
+System_Ext(indeed_api, "API de Indeed")
+
+Rel_D(create_controller, sns, "Publica evento de creación", "SNS Topic")
+Rel_D(update_controller, sns, "Publica evento de actualización", "SNS Topic")
+Rel_D(delete_controller, sns, "Publica evento de eliminación", "SNS Topic")
+Rel_D(search_controller, job_posting_manager, "Solicita búsqueda")
+
+Rel_D(sns, job_posting_manager, "Consume eventos", "Suscripción SNS")
+Rel_R(job_posting_manager, validation_component, "Valida datos", "Llamada local")
+Rel_D(job_posting_manager, sns, "Publica eventos de oferta validada", "SNS Topic")
+
+Rel_D(sns, publication_scheduler, "Consume eventos de oferta validada", "Suscripción SNS")
+Rel_D(publication_scheduler, sns, "Publica eventos de publicación programada", "SNS Topic")
+
+Rel_D(sns, channel_integration, "Consume eventos de publicación programada", "Suscripción SNS")
+Rel_D(channel_integration, linkedin_api, "Publica ofertas", "API")
+Rel_D(channel_integration, indeed_api, "Publica ofertas", "API")
+Rel_U(channel_integration, sns, "Publica eventos de publicación completada", "SNS Topic")
+
+Rel_D(sns, analytics_component, "Consume eventos de publicación completada", "Suscripción SNS")
+Rel_U(analytics_component, sns, "Publica eventos de análisis", "SNS Topic")
+
+Rel_D(job_posting_manager, data_access, "Usa", "Llamada local")
+Rel_D(data_access, rds_db, "Lee/Escribe", "SQL")
+Rel_D(data_access, cache, "Lee/Escribe", "Redis")
+
+Rel_D(job_posting_manager, s3, "Almacena archivos adjuntos", "API")
+
+@enduml

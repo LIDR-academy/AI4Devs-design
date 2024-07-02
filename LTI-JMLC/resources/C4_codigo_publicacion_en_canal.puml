@@ -1,0 +1,100 @@
+@startuml Job Posting Publication Component Updated
+
+skinparam classAttributeIconSize 0
+skinparam packageStyle rectangle
+
+package "Domain" {
+  class JobPosting {
+    - id: UUID
+    - title: String
+    - description: String
+    - requirements: List<String>
+    - publishedChannels: List<Channel>
+    + publish(channel: Channel): void
+    + unpublish(channel: Channel): void
+  }
+
+  enum Channel {
+    LINKEDIN
+    INDEED
+    COMPANY_WEBSITE
+  }
+
+  class PublicationService {
+    - channelAdapters: Map<Channel, ChannelAdapter>
+    + publishJobPosting(jobPosting: JobPosting, channel: Channel): void
+    + unpublishJobPosting(jobPosting: JobPosting, channel: Channel): void
+  }
+}
+
+package "Application" {
+  class PublishJobPostingUseCase {
+    - jobPostingRepository: JobPostingRepository
+    - publicationService: PublicationService
+    + execute(jobPostingId: UUID, channel: Channel): void
+  }
+}
+
+package "Ports" {
+  interface "JobPostingRepository" as JobPostingRepositoryPort {
+    + findById(id: UUID): JobPosting
+    + save(jobPosting: JobPosting): void
+  }
+
+  interface "ChannelAdapter" as ChannelAdapterPort {
+    + publish(jobPosting: JobPosting): void
+    + unpublish(jobPosting: JobPosting): void
+  }
+
+  interface "SNSEventHandler" as SNSEventHandlerPort {
+    + handlePublishEvent(event: SNSEvent): void
+  }
+}
+
+package "Adapters" {
+  package "Persistence" {
+    class JobPostingRepositoryImpl {
+      - entityManager: EntityManager
+      + findById(id: UUID): JobPosting
+      + save(jobPosting: JobPosting): void
+    }
+  }
+
+  package "External" {
+    class LinkedInAdapter {
+      - apiClient: LinkedInApiClient
+      + publish(jobPosting: JobPosting): void
+      + unpublish(jobPosting: JobPosting): void
+    }
+
+    class IndeedAdapter {
+      - apiClient: IndeedApiClient
+      + publish(jobPosting: JobPosting): void
+      + unpublish(jobPosting: JobPosting): void
+    }
+  }
+
+  package "EntryPoints" {
+    class SNSPublishJobPostingHandler {
+      - useCase: PublishJobPostingUseCase
+      + handlePublishEvent(event: SNSEvent): void
+    }
+
+    class SNSEvent {
+      + jobPostingId: UUID
+      + channel: Channel
+    }
+  }
+}
+
+JobPosting --> "0..*" Channel
+PublicationService o--> "0..*" ChannelAdapterPort
+PublishJobPostingUseCase --> JobPostingRepositoryPort
+PublishJobPostingUseCase --> PublicationService
+JobPostingRepositoryImpl ..|> JobPostingRepositoryPort
+LinkedInAdapter ..|> ChannelAdapterPort
+IndeedAdapter ..|> ChannelAdapterPort
+SNSPublishJobPostingHandler ..|> SNSEventHandlerPort
+SNSPublishJobPostingHandler --> PublishJobPostingUseCase
+
+@enduml
