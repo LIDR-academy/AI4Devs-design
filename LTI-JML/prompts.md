@@ -4,15 +4,16 @@
 - **Modelo Asistente**: ChatGPT por OpenAI
 - **Versión del Modelo**: GPT-4 
 
-Este asistente ha sido utilizado para discutir y crear varios elementos de diseño para un sistema de seguimiento de candidatos (ATS). La información recopilada durante esta conversación incluye un análisis de competidores, un modelo Lean Canvas, el modelo de datos esenciales, la arquitectura de alto nivel, y un diagrama C4, entre otros aspectos. A continuación, se presenta la documentación detallada en diferentes etapas de diseño.
+Este asistente ha sido utilizado para discutir y crear varios elementos de diseño para un sistema de seguimiento de candidatos (ATS). La información recopilada durante esta conversación incluye un análisis de competidores, un modelo Lean Canvas, el modelo de datos esenciales, la arquitectura de alto nivel, y otros aspectos. A continuación, se presentan todos los prompts del usuario y las respuestas detalladas que el asistente proporcionó durante el proceso de diseño.
 
 ---
 
 ## Prompts y Respuestas
+
 ### Prompt 1:
 **Usuario**: "Somos una startup llamada LTI que necesita crear un sistema de gestion de candidatos. Para ello se quiere desarrollar el ATS (Applicant-Tracking System) del futuro, si esta terminologia no es familiar para ti o necesitas mas informacion, te adjunto esta imagen para ayudarte a entender mejor lo que es."
 
-**Respuesta**: 
+**Respuesta**:
 Gracias por proporcionar la imagen. La imagen que has compartido muestra el ciclo del proceso de reclutamiento, típicamente gestionado por un sistema de seguimiento de candidatos (Applicant Tracking System, ATS). Vamos a desglosar brevemente este proceso y cómo podemos diseñar el ATS del futuro para tu startup LTI.
 
 Según la imagen, el ciclo de contratación tiene varios pasos:
@@ -30,7 +31,7 @@ Un ATS ayuda a automatizar cada uno de estos pasos, facilitando el flujo de trab
 ### Prompt 2:
 **Usuario**: "Antes de comenzar con la fase de diseño, me gustaria que hicieras un analisis de de los principales competidores que hay hoy en dia (con analizar los 3 mas notorios es suficiente) y en base a dicho analisis, extraer los puntos mas fuertes y debiles de cara a diseñar nuestro sistema para conseguir que nuestro sistema suponga un valor añadido de cara al usuario final"
 
-**Respuesta**: 
+**Respuesta**:
 Claro, vamos a empezar analizando los tres principales sistemas de seguimiento de candidatos (ATS) más notorios en el mercado actual. Esto nos ayudará a identificar las fortalezas y debilidades clave que existen y que podemos aprovechar para diseñar una solución innovadora y diferenciada.
 
 #### 1. **Greenhouse**
@@ -81,7 +82,7 @@ Claro, vamos a empezar analizando los tres principales sistemas de seguimiento d
 - Dirigirnos específicamente a startups y medianas empresas que necesitan **flexibilidad y facilidad de uso**, pero sin la complejidad de Workday.
 - Ofrecer un ATS que permita a empresas en crecimiento escalar de manera orgánica, con funcionalidades ajustables a medida que la empresa crece.
 
-### Resumen de Fortalezas y Debilidades para Nuestro ATS:
+**Resumen de Fortalezas y Debilidades para Nuestro ATS**:
 
 **Fortalezas que debemos aprovechar para nuestro ATS**:
 1. **Simplicidad e intuitividad**: Crear un sistema fácil de usar desde el primer día, minimizando la necesidad de formación para que cualquier miembro del equipo pueda usarlo sin barreras.
@@ -93,106 +94,185 @@ Claro, vamos a empezar analizando los tres principales sistemas de seguimiento d
 2. **Coste y accesibilidad**: Ofrecer una **estructura de precios flexible**, que permita a startups acceder a funcionalidades básicas y luego ir ampliando a medida que crecen, manteniendo precios competitivos.
 3. **Automatización inteligente**: Hacer que la automatización no requiera configuraciones extensas. Por ejemplo, integrar un **motor de recomendaciones** que sugiera automáticamente acciones como candidatos recomendados para ciertos puestos, basándose en el aprendizaje del uso del sistema.
 
----
+### Prompt 3:
+**Usuario**: "De acuerdo, cogiendo el rol de Product Manager, vamos a comenzar a esbozar el diseño del sistema. Para ello, necesito que me generes un diagrama Lean Canvas para entender mejor el modelo de negocio."
 
-## 1. Análisis de Competencia
-Se realizó un análisis de los principales ATS del mercado para identificar fortalezas y debilidades:
+**Respuesta**:
+Claro, vamos a crear un Lean Canvas para el sistema ATS que nos permita comprender el modelo de negocio. A continuación, se presentan los aspectos clave que conforman el Lean Canvas:
 
-- **Greenhouse**: Ofrece integración extensa y colaboración de equipos, pero es costoso y complejo.
-- **Lever**: Combina CRM y ATS, gestiona talento proactivamente, pero resulta avanzado y difícil para usuarios sin experiencia.
-- **Workday Recruiting**: Integración completa de recursos humanos, pero está enfocado en grandes empresas, con una curva de aprendizaje elevada.
+- **Problemas**: Complejidad de los ATS actuales, precios elevados para startups, falta de flexibilidad y personalización.
+- **Segmentos de Clientes**: Startups, PYMES, y equipos de recursos humanos pequeños que buscan simplicidad y eficiencia.
+- **Propuesta de Valor Única**: ATS amigable, escalable y de bajo costo, especialmente diseñado para startups y PYMES.
+- **Soluciones**: Automatización sencilla, interfaz intuitiva, integración rápida con otras herramientas.
+- **Canales**: Marketing digital, partnerships con incubadoras y aceleradoras de startups, conferencias de recursos humanos.
+- **Estructura de Costos**: Desarrollo tecnológico, marketing y ventas, soporte al cliente.
+- **Flujo de Ingresos**: Suscripciones mensuales, planes escalables según las necesidades de cada cliente.
+- **Métricas Clave**: Tasa de adopción, satisfacción del cliente, reducción del tiempo de contratación.
+- **Ventaja Injusta**: Enfoque en la simplicidad y personalización para startups.
 
-**Conclusiones**:
-Nuestro ATS debe ser intuitivo, flexible, y ofrecer precios accesibles para startups y PYMES.
+### Prompt 4:
+**Usuario**: "Vamos a pasar a diseñar nuestro sistema, para ello como analista experto de software que eres, necesito que me enumeres los 3 casos de uso principales así como el diagrama UML asociado a cada uno de ellos. Muéstrame estos diagramas en formato PlantUML"
 
----
+**Respuesta**:
+Perfecto, vamos a comenzar enumerando los tres casos de uso principales de nuestro sistema ATS:
 
-## 2. Lean Canvas para el Sistema ATS
-Se desarrolló un Lean Canvas para identificar los aspectos clave del negocio, como problemas, soluciones, segmentos de clientes, y propuestas de valor únicas. Los puntos relevantes incluyen:
+#### Casos de Uso Principales del ATS:
 
-- **Problemas**: Complejidad de ATS actuales, precios elevados, falta de flexibilidad.
-- **Propuesta de Valor**: ATS amigable, escalable, diseñado para startups.
-- **Segmentos de Clientes**: Startups, PYMES, equipos de recursos humanos pequeños.
+1. **Publicación de Vacantes y Gestión de Aplicaciones**
+   - **Actor principal**: Reclutador
+   - **Descripción**: El reclutador puede crear nuevas vacantes y publicarlas en varias plataformas de forma automatizada. Además, el sistema gestiona la recepción de aplicaciones y las almacena en el Talent Pool.
 
-[**Enlace a Lean Canvas completo**](#)
+2. **Filtro y Selección Automatizada de Candidatos**
+   - **Actor principal**: Reclutador
+   - **Descripción**: El sistema utiliza inteligencia artificial para filtrar y clasificar automáticamente las solicitudes recibidas, sugiriendo al reclutador una lista de candidatos que mejor cumplen con los requisitos del puesto.
 
----
+3. **Programación de Entrevistas y Evaluación de Candidatos**
+   - **Actor principal**: Reclutador, Candidato
+   - **Descripción**: El sistema permite al reclutador programar entrevistas de manera automática sincronizando los calendarios de ambas partes. Los candidatos seleccionados son notificados, y el sistema realiza el seguimiento necesario para las evaluaciones.
 
-## 3. Modelo de Datos Esenciales del ATS
-Se creó un modelo de datos esencial para el sistema ATS, con las siguientes entidades clave y sus relaciones:
+### Prompt 5:
+**Usuario**: "Por último, antes de terminar esta fase de análisis, necesito que me generes una explicación de las funciones principales de nuestro sistema ATS teniendo en cuenta el análisis previo realizado"
 
-### Entidades Clave:
-- **Candidato**: Almacena datos del candidato como nombre, correo, teléfono, URL del CV, y estado de candidatura.
-- **Vacante**: Detalles de la vacante, incluyendo título, descripción, departamento, y estado.
-- **Entrevista**: Registra información sobre las entrevistas (fechas, estado, resultado).
-- **Usuario**: Incluye los datos del reclutador o administrador, su rol, y credenciales.
-- **Prueba**: Evaluaciones aplicadas a los candidatos.
+**Respuesta**:
+Claro, a continuación, te presento las funciones principales de nuestro sistema ATS basado en el análisis previo:
 
-**Diagrama Visual Mejorado del Modelo de Datos**: 
+1. **Gestión de Vacantes y Publicaciones**: Nuestro sistema permitirá crear, publicar y gestionar vacantes de manera sencilla. Se podrá publicar en múltiples plataformas con un solo clic, asegurando la máxima exposición de las oportunidades laborales.
 
-![Modelo de Datos ATS](modelo_datos_ats_mejorado.png)
+2. **Automatización del Proceso de Selección**: Utilizando herramientas de inteligencia artificial, el ATS filtrará automáticamente los perfiles recibidos, clasificará a los candidatos según su idoneidad y sugerirá una lista de los más cualificados. Esto ahorrará tiempo a los reclutadores y garantizará que ningún buen candidato pase desapercibido.
 
----
+3. **Comunicación con los Candidatos**: El ATS proporcionará una comunicación fluida con los candidatos mediante notificaciones automáticas, recordatorios de entrevistas y retroalimentación en cada fase del proceso. Esto mejorará la experiencia del candidato y fomentará una buena imagen de la empresa.
 
-## 4. Arquitectura de Alto Nivel del Sistema ATS
-Se diseñó una arquitectura a alto nivel utilizando como referencia el repositorio "[System Design Primer](https://github.com/donnemartin/system-design-primer)". Los componentes incluyen:
+4. **Programación y Gestión de Entrevistas**: La herramienta permitirá a los reclutadores programar entrevistas automáticamente, sincronizando calendarios con los candidatos y asegurando que todos los involucrados estén informados.
 
-### Componentes Esenciales:
-1. **Frontend (Web/Móvil)**: Interfaz para interactuar con el sistema.
-2. **API Gateway**: Puerta de entrada para todas las solicitudes que redirige a los microservicios correspondientes.
-3. **Microservicios**: Cada microservicio tiene una funcionalidad específica, como la gestión de candidatos o entrevistas.
-4. **Bases de Datos**: Bases de datos SQL y NoSQL para almacenar la información estructurada y no estructurada.
-5. **Message Queue**: Para manejar la comunicación asincrónica entre servicios.
+5. **Integración y Análisis**: Integración sencilla con otras plataformas y herramientas de RRHH, así como funciones de análisis para evaluar la efectividad del proceso de contratación, proporcionando informes personalizados y métricas clave.
 
-**Componentes Relacionados**:
-- Autenticación: OAuth 2.0 y servicios como AWS Cognito.
-- Monitorización: Grafana y Prometheus.
+### Prompt 6:
+**Usuario**: "Vamos a pasar a diseñar la arquitectura a alto nivel de nuestro sistema ATS, para ello como arquitecto de software experto, necesito que me generes un modelo de datos esenciales de nuestro sistema de gestión de candidatos. Necesito que me des algunas entidades (con sus nombres y tipos) y cómo se relacionan entre sí."
 
----
+**Respuesta**:
+Claro, vamos a crear un modelo de datos esenciales para el sistema de gestión de candidatos. A continuación se presentan algunas entidades clave y cómo se relacionan entre sí:
 
-## 5. Diagrama C4 del Sistema ATS
-### Nivel 1: Contexto del Sistema
-Este nivel muestra la relación entre el sistema ATS y los diferentes actores:
-- **Reclutador**, **Candidato**, **Administrador** interactúan con el sistema para gestionar el ciclo de vida del candidato.
+#### Entidades Principales:
 
-### Nivel 2: Diagrama de Contenedores
-- **Frontend** (Cliente Web/Móvil)
-- **Backend** con varios microservicios:
-  - **Gestor de Vacantes**
-  - **Gestor de Candidatos**
-  - **Gestor de Entrevistas**
-- **Bases de Datos** (SQL y NoSQL)
-- **Message Queue** para comunicaciones internas.
+1. **Candidato**
+   - **ID (Integer)**: Identificador único del candidato.
+   - **Nombre (String)**: Nombre del candidato.
+   - **Email (String)**: Correo electrónico.
+   - **Teléfono (String)**: Número de contacto.
+   - **CV_URL (String)**: URL del currículum del candidato.
+   - **Estado (Enum)**: Estado actual de la candidatura (Aplicado, En Proceso, Rechazado, Contratado).
 
-### Nivel 3: Diagrama de Componentes
-Enfocado en el **Servicio de Gestión de Candidatos**:
-- **CandidatoController**: Maneja solicitudes HTTP.
-- **CandidatoService**: Contiene la lógica de negocio.
-- **CandidatoRepository**: Interactúa con la base de datos.
-- **NotificationComponent** y **ValidationComponent**.
+2. **Vacante**
+   - **ID (Integer)**: Identificador único de la vacante.
+   - **Título (String)**: Título del puesto de trabajo.
+   - **Descripción (String)**: Descripción detallada de la vacante.
+   - **Departamento (String)**: Departamento al que pertenece la vacante.
+   - **Estado (Enum)**: Estado de la vacante (Abierta, Cerrada, En Proceso).
 
-### Nivel 4: Diagrama de Código - CandidatoService
-- Contiene métodos como `createCandidate()`, `updateCandidate()`, `deleteCandidate()`, `getCandidate()`.
+3. **Entrevista**
+   - **ID (Integer)**: Identificador único de la entrevista.
+   - **Fecha (Datetime)**: Fecha y hora de la entrevista.
+   - **Candidato_ID (Integer)**: Referencia al candidato entrevistado.
+   - **Vacante_ID (Integer)**: Referencia a la vacante para la que se realiza la entrevista.
+   - **Estado (Enum)**: Estado de la entrevista (Programada, Completada, Cancelada).
 
-**Código UML de Referencia (Pseudo-código en PlantUML)**
-```plantuml
-@startuml
-class CandidatoService {
-    - CandidatoRepository candidatoRepository
-    - NotificationComponent notificationComponent
-    - ValidationComponent validationComponent
+4. **Usuario (Reclutador)**
+   - **ID (Integer)**: Identificador único del usuario.
+   - **Nombre (String)**: Nombre del reclutador.
+   - **Email (String)**: Correo electrónico.
+   - **Rol (Enum)**: Rol del usuario (Reclutador, Administrador).
 
-    + createCandidate(candidateDTO): void
-    + updateCandidate(candidateId, candidateDTO): void
-    + deleteCandidate(candidateId): void
-    + getCandidate(candidateId): Candidate
-}
-@enduml
-```
+5. **Prueba**
+   - **ID (Integer)**: Identificador único de la prueba.
+   - **Nombre (String)**: Nombre de la prueba.
+   - **Descripción (String)**: Descripción de la prueba.
+   - **Candidato_ID (Integer)**: Referencia al candidato al que se le aplicó la prueba.
+   - **Resultado (String)**: Resultado obtenido por el candidato.
 
----
+#### Relaciones entre Entidades:
 
-## Conclusión
-El sistema ATS está diseñado teniendo en cuenta la escalabilidad, la facilidad de uso, y la capacidad de integrarse sin problemas en procesos de recursos humanos. La arquitectura modular basada en microservicios, junto con una interfaz intuitiva y herramientas modernas de desarrollo, permitirán optimizar el proceso de selección de personal en startups y PYMES.
+- **Candidato** tiene **muchas entrevistas** asociadas. Cada entrevista está relacionada con una **vacante**.
+- **Vacante** puede tener **muchos candidatos** aplicados.
+- **Usuario (Reclutador)** puede **gestionar muchas vacantes** y **coordinar muchas entrevistas**.
+- **Prueba** está relacionada con **un candidato**, y un candidato puede tener **muchas pruebas** realizadas.
 
-Este documento resume los resultados del diseño del sistema ATS, proporcionando una guía clara desde el modelo de negocio inicial hasta los detalles de implementación en diferentes niveles arquitectónicos.
+### Prompt 7:
+**Usuario**: "Por último, necesito diseñar la arquitectura a alto nivel de nuestro sistema ATS, para ello puedes apoyarte en este enlace: https://github.com/donnemartin/system-design-primer, el cual te va a ayudar a comprender mejor todos los patrones, componentes y casos de uso más relevantes para el diseño de sistemas."
+
+**Respuesta**:
+Claro, tomando como referencia el contenido del enlace proporcionado y utilizando buenas prácticas de diseño de sistemas, voy a describir una arquitectura de alto nivel para nuestro sistema ATS.
+
+#### Componentes de la Arquitectura:
+
+1. **Frontend (Aplicación Web/Móvil)**:
+   - Interfaz donde interactúan los usuarios, incluidos reclutadores y candidatos.
+   - Permite la gestión de vacantes, aplicaciones, entrevistas y comunicación.
+
+2. **API Gateway**:
+   - Sirve como punto de entrada para todas las solicitudes externas.
+   - Maneja la autenticación y autoriza el acceso a los microservicios correspondientes.
+
+3. **Microservicios**:
+   - **Servicio de Gestión de Vacantes**: Maneja la creación y actualización de vacantes.
+   - **Servicio de Candidatos**: Almacena y gestiona la información del candidato.
+   - **Servicio de Entrevistas**: Gestiona la programación y seguimiento de entrevistas.
+   - **Servicio de Notificaciones**: Envía correos electrónicos, mensajes y notificaciones push para mantener a los usuarios informados.
+
+4. **Base de Datos**:
+   - **SQL**: Base de datos relacional que almacena las entidades estructuradas como candidatos, vacantes, entrevistas, y usuarios.
+   - **NoSQL**: Para almacenar información no estructurada, como archivos adjuntos, currículos, y registros de actividad.
+
+5. **Message Queue**:
+   - Utilizada para la comunicación asíncrona entre microservicios.
+   - Gestiona la cola de notificaciones y asegura que todas las tareas que necesiten procesamiento sean ejecutadas.
+
+6. **Servicio de Autenticación**:
+   - Implementación de **OAuth 2.0** o **JWT** para autenticar y autorizar usuarios.
+
+7. **Servicios de Terceros (Integración)**:
+   - **API de Tableros de Trabajo**: Para publicar automáticamente las vacantes en sitios de empleo populares.
+   - **Integración de Calendario**: Sincroniza las entrevistas con los calendarios de los reclutadores y candidatos.
+
+### Prompt 8:
+**Usuario**: "Por último, necesito que me generes un diagrama C4 de nuestro sistema ATS. Necesito que identifiques los diferentes niveles de abstracción (Contexto, contenedores, componentes y código) y que me muestre en profundidad uno de los componentes identificados, el que prefieras."
+
+**Respuesta**:
+Voy a describir la estructura del diagrama C4 del sistema ATS, identificando cada nivel de abstracción:
+
+#### **Nivel 1: Contexto del Sistema**
+Este nivel muestra cómo el ATS interactúa con los diferentes actores externos.
+
+- **Usuarios Externos**: Reclutadores, candidatos, administradores.
+- **Servicios Externos**: Plataformas de trabajo, servicios de calendario, sistemas de notificación.
+- **Relación**: Los usuarios interactúan con el ATS para gestionar el ciclo de vida del candidato. Los servicios externos se integran para publicar vacantes y coordinar entrevistas.
+
+#### **Nivel 2: Contenedores**
+Identificamos los principales contenedores que forman el sistema:
+
+- **Aplicación Web/Móvil**: Utilizada por los reclutadores y candidatos para gestionar el proceso de contratación.
+- **API Gateway**: Punto de entrada para todas las solicitudes.
+- **Microservicios**:
+  - Gestión de Vacantes
+  - Gestión de Candidatos
+  - Gestión de Entrevistas
+  - Servicio de Notificaciones
+- **Bases de Datos**:
+  - SQL y NoSQL
+- **Message Queue**: Gestión asíncrona de tareas y notificaciones.
+
+#### **Nivel 3: Componentes**
+Voy a detallar el **Servicio de Gestión de Candidatos**:
+
+- **CandidatoController**: Exponer las APIs REST para interactuar con los datos del candidato.
+- **CandidatoService**: Contiene la lógica de negocio relacionada con los candidatos, como filtrar, clasificar y gestionar estados.
+- **CandidatoRepository**: Maneja la interacción con la base de datos.
+- **NotificationComponent**: Envía notificaciones relevantes a los candidatos durante el proceso.
+- **ValidationComponent**: Valida los datos de los candidatos antes de almacenarlos.
+
+#### **Nivel 4: Código**
+Para el **CandidatoService**, la implementación incluiría métodos como:
+
+- **createCandidate()**: Crear un nuevo candidato en la base de datos.
+- **updateCandidate()**: Actualizar la información del candidato.
+- **deleteCandidate()**: Eliminar un candidato.
+- **getCandidate()**: Obtener información específica del candidato.
