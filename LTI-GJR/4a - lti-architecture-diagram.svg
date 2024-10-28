@@ -1,0 +1,77 @@
+<svg viewBox="0 0 1000 800" xmlns="http://www.w3.org/2000/svg">
+    <!-- Frontend Layer -->
+    <rect x="50" y="50" width="900" height="80" fill="#f9f9ff" stroke="#333" stroke-width="2"/>
+    <text x="60" y="85" font-family="Arial" font-size="16" font-weight="bold">Frontend Layer</text>
+    <rect x="200" y="65" width="150" height="50" fill="#f9f" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="225" y="95" font-family="Arial" font-size="14">Web Application</text>
+    <rect x="600" y="65" width="150" height="50" fill="#f9f" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="635" y="95" font-family="Arial" font-size="14">Mobile App</text>
+
+    <!-- API Gateway Layer -->
+    <rect x="50" y="150" width="900" height="80" fill="#eef" stroke="#333" stroke-width="2"/>
+    <text x="60" y="185" font-family="Arial" font-size="16" font-weight="bold">API Gateway Layer</text>
+    <rect x="400" y="165" width="150" height="50" fill="#bbf" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="430" y="195" font-family="Arial" font-size="14">API Gateway</text>
+
+    <!-- Security Layer -->
+    <rect x="50" y="250" width="900" height="80" fill="#fee" stroke="#333" stroke-width="2"/>
+    <text x="60" y="285" font-family="Arial" font-size="16" font-weight="bold">Security Layer</text>
+    <rect x="200" y="265" width="150" height="50" fill="#fbb" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="215" y="295" font-family="Arial" font-size="14">Authentication</text>
+    <rect x="600" y="265" width="150" height="50" fill="#fbb" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="645" y="295" font-family="Arial" font-size="14">IAM</text>
+
+    <!-- Core Services Layer -->
+    <rect x="50" y="350" width="900" height="120" fill="#efe" stroke="#333" stroke-width="2"/>
+    <text x="60" y="385" font-family="Arial" font-size="16" font-weight="bold">Core Services Layer</text>
+    <rect x="100" y="395" width="150" height="50" fill="#bfb" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="120" y="425" font-family="Arial" font-size="14">Job Management</text>
+    <rect x="300" y="395" width="150" height="50" fill="#bfb" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="310" y="425" font-family="Arial" font-size="14">Candidate Mgmt</text>
+    <rect x="500" y="395" width="150" height="50" fill="#bfb" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="510" y="425" font-family="Arial" font-size="14">Application Mgmt</text>
+    <rect x="700" y="395" width="150" height="50" fill="#bfb" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="715" y="425" font-family="Arial" font-size="14">Workflow Engine</text>
+
+    <!-- AI/ML Layer -->
+    <rect x="50" y="490" width="900" height="100" fill="#ffd" stroke="#333" stroke-width="2"/>
+    <text x="60" y="525" font-family="Arial" font-size="16" font-weight="bold">AI/ML Layer</text>
+    <rect x="200" y="520" width="150" height="50" fill="#ff9" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="215" y="550" font-family="Arial" font-size="14">ML Engine</text>
+    <rect x="400" y="520" width="150" height="50" fill="#ff9" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="435" y="550" font-family="Arial" font-size="14">NLP</text>
+    <rect x="600" y="520" width="150" height="50" fill="#ff9" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="625" y="550" font-family="Arial" font-size="14">Prediction</text>
+
+    <!-- Integration Layer -->
+    <rect x="50" y="610" width="900" height="80" fill="#fed" stroke="#333" stroke-width="2"/>
+    <text x="60" y="645" font-family="Arial" font-size="16" font-weight="bold">Integration Layer</text>
+    <rect x="300" y="625" width="150" height="50" fill="#f96" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="315" y="655" font-family="Arial" font-size="14">Integration Svc</text>
+    <rect x="500" y="625" width="150" height="50" fill="#f96" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="520" y="655" font-family="Arial" font-size="14">Webhook Svc</text>
+
+    <!-- Data Layer -->
+    <rect x="50" y="710" width="900" height="80" fill="#eff" stroke="#333" stroke-width="2"/>
+    <text x="60" y="745" font-family="Arial" font-size="16" font-weight="bold">Data Layer</text>
+    <rect x="200" y="725" width="150" height="50" fill="#9cf" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="230" y="755" font-family="Arial" font-size="14">Database</text>
+    <rect x="400" y="725" width="150" height="50" fill="#9cf" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="445" y="755" font-family="Arial" font-size="14">Cache</text>
+    <rect x="600" y="725" width="150" height="50" fill="#9cf" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="625" y="755" font-family="Arial" font-size="14">Search</text>
+
+    <!-- Connecting Lines -->
+    <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+        </marker>
+    </defs>
+    <!-- Vertical connection lines with arrows -->
+    <line x1="475" y1="115" x2="475" y2="165" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <line x1="475" y1="215" x2="475" y2="265" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <line x1="475" y1="315" x2="475" y2="395" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <line x1="475" y1="445" x2="475" y2="520" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <line x1="475" y1="570" x2="475" y2="625" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <line x1="475" y1="675" x2="475" y2="725" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+</svg>
