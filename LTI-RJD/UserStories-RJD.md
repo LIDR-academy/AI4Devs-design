@@ -20,6 +20,7 @@
   - [**Main Use Cases**](#main-use-cases)
     - [**Use Case 1: AI-Powered Candidate Screening**](#use-case-1-ai-powered-candidate-screening)
     - [**Use Case 2: Collaborative Interview Scheduling**](#use-case-2-collaborative-interview-scheduling)
+    - [**Use Case 3: Automated Candidate Communication**](#use-case-3-automated-candidate-communication)
   - [**Data Model**](#data-model)
     - [**Relationships Between Entities**](#relationships-between-entities)
   - [**C4 Model Diagrams**](#c4-model-diagrams)
@@ -136,26 +137,54 @@ flowchart LR
 
 ### **Use Case 1: AI-Powered Candidate Screening**
 
-```mermaid
-sequenceDiagram
-    Candidate->>ATS: Submit Application
-    ATS->>ATS: Parse Resume Data
-    ATS->>ATS: AI Analysis and Ranking
-    Recruiter->>ATS: Review Ranked Candidates
-    Recruiter->>ATS: Shortlist Candidates
+```plantuml
+@startuml
+actor Candidate
+actor Recruiter
+entity ATS
+
+Candidate -> ATS : Submit Application
+ATS -> ATS : Parse Resume Data
+ATS -> ATS : AI Analysis and Ranking
+Recruiter -> ATS : Review Ranked Candidates
+Recruiter -> ATS : Shortlist Candidates
+@enduml
 ```
 
 ### **Use Case 2: Collaborative Interview Scheduling**
 
-```mermaid
-sequenceDiagram
-    Recruiter->>ATS: Initiate Scheduling
-    ATS->>ATS: Check Availability
-    ATS->>HiringManager: Propose Time Slots
-    HiringManager->>ATS: Confirm Time Slot
-    ATS->>Candidate: Send Invitation
-    ATS->>Recruiter: Send Confirmation
-    ATS->>HiringManager: Send Confirmation
+```plantuml
+@startuml
+actor Recruiter
+actor HiringManager
+actor Candidate
+entity ATS
+
+Recruiter -> ATS : Initiate Scheduling
+ATS -> ATS : Check Availability
+ATS -> HiringManager : Propose Time Slots
+HiringManager -> ATS : Confirm Time Slot
+ATS -> Candidate : Send Invitation
+ATS -> Recruiter : Send Confirmation
+ATS -> HiringManager : Send Confirmation
+@enduml
+```
+
+### **Use Case 3: Automated Candidate Communication**
+
+```plantuml
+@startuml
+actor Candidate
+actor Recruiter
+entity ATS
+
+ATS -> Candidate : Send Acknowledgment
+ATS -> Candidate : Send Status Updates
+ATS -> Candidate : Send Interview Instructions
+ATS -> Candidate : Send Offer Letter
+ATS -> Candidate : Request Feedback
+Recruiter -> ATS : Personalize Communications (Optional)
+@enduml
 ```
 
 ---
