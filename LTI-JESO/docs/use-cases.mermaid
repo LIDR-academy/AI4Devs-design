@@ -1,0 +1,40 @@
+sequenceDiagram
+    participant R as Recruiter
+    participant S as System
+    participant AI as AI Engine
+    participant Ex as External Sources
+
+    %% Use Case 1: Job Posting and Auto-sourcing
+    Note over R,Ex: Use Case 1: Job Posting and Auto-sourcing
+    R->>S: Create new job posting
+    S->>AI: Analyze job requirements
+    AI->>S: Generate optimized job description
+    S->>Ex: Post to integrated platforms
+    S->>AI: Initiate candidate search
+    AI->>Ex: Search matching profiles
+    Ex->>S: Return candidate profiles
+    S->>AI: Score and filter candidates
+    AI->>S: Return ranked candidates
+    S->>R: Present qualified candidates
+
+    %% Use Case 2: Candidate Evaluation
+    Note over R,Ex: Use Case 2: Candidate Evaluation
+    R->>S: Review candidate profile
+    S->>AI: Analyze candidate fit
+    AI->>S: Generate match score
+    S->>R: Show match analysis
+    R->>S: Schedule interview
+    S->>Ex: Send calendar invite
+    Ex->>S: Confirm scheduling
+    S->>R: Notify confirmation
+
+    %% Use Case 3: Pipeline Management
+    Note over R,Ex: Use Case 3: Pipeline Management
+    R->>S: Access pipeline dashboard
+    S->>AI: Generate pipeline analytics
+    AI->>S: Return insights
+    S->>R: Display pipeline status
+    R->>S: Update candidate status
+    S->>AI: Update predictions
+    AI->>S: Return updated metrics
+    S->>R: Show updated dashboard

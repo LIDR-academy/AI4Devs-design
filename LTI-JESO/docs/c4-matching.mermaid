@@ -1,0 +1,61 @@
+graph TB
+    subgraph "System Context"
+        MS[Matching Service]
+        JS[Job Service]
+        CS[Candidate Service]
+        NS[Notification Service]
+        DB[(Database)]
+        Cache[(Cache)]
+        Search[(Search Engine)]
+    end
+
+    subgraph "Containers"
+        API[Matching API]
+        Worker[Background Worker]
+        Scorer[Score Calculator]
+        Rules[Rules Engine]
+    end
+
+    subgraph "Components"
+        subgraph "Matching API Components"
+            RC[Request Controller]
+            VS[Validation Service]
+            MM[Match Manager]
+        end
+
+        subgraph "Score Calculator Components"
+            PE[Profile Evaluator]
+            SM[Skills Matcher]
+            EM[Experience Matcher]
+            WM[Weight Manager]
+        end
+
+        subgraph "Rules Engine Components"
+            RP[Rules Processor]
+            RV[Rules Validator]
+            RE[Rules Evaluator]
+        end
+    end
+
+    JS --> API
+    CS --> API
+    API --> Worker
+    Worker --> Scorer
+    Scorer --> Rules
+    
+    RC --> VS
+    VS --> MM
+    MM --> PE
+    PE --> SM
+    PE --> EM
+    SM --> WM
+    EM --> WM
+    
+    Rules --> RP
+    RP --> RV
+    RV --> RE
+    
+    MM --> DB
+    WM --> Cache
+    RE --> Search
+    NS --> API
