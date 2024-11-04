@@ -1,0 +1,52 @@
+graph TB
+    subgraph "Frontend Layer"
+        UI[Web Interface]
+        Mobile[Mobile Interface]
+    end
+
+    subgraph "API Gateway Layer"
+        API[API Gateway]
+        Auth[Authentication Service]
+    end
+
+    subgraph "Core Services"
+        JobService[Job Service]
+        CandidateService[Candidate Service]
+        MatchingService[Matching Service]
+        NotificationService[Notification Service]
+        AnalyticsService[Analytics Service]
+    end
+
+    subgraph "Integration Layer"
+        LinkedInInt[LinkedIn Integration]
+        JobBoardInt[Job Board Integration]
+        EmailInt[Email Service]
+        CalendarInt[Calendar Integration]
+    end
+
+    subgraph "Data Layer"
+        DB[(Main Database)]
+        Cache[(Redis Cache)]
+        Search[(Elasticsearch)]
+    end
+
+    UI --> API
+    Mobile --> API
+    API --> Auth
+    API --> JobService
+    API --> CandidateService
+    API --> MatchingService
+    API --> NotificationService
+    API --> AnalyticsService
+
+    JobService --> LinkedInInt
+    JobService --> JobBoardInt
+    CandidateService --> Search
+    MatchingService --> Search
+    NotificationService --> EmailInt
+    NotificationService --> CalendarInt
+
+    JobService --> DB
+    CandidateService --> DB
+    MatchingService --> Cache
+    AnalyticsService --> DB
