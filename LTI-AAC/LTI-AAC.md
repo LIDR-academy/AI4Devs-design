@@ -493,6 +493,87 @@ Servicio de Evaluación: Conecta con la IA para calificar y ordenar a los candid
 Servicio de Notificación: Gestiona todas las notificaciones relevantes para el proceso de contratación, tanto para candidatos como para reclutadores.
 Base de Datos almacena toda la información estructurada y es el repositorio de los datos críticos del sistema.
 
+Nivel 4: Pseudocódigo para el Servicio de Publicación de Ofertas
+A continuación, te presento un ejemplo de pseudocódigo que ilustra la funcionalidad principal del Servicio de Publicación de Ofertas. Este servicio gestiona la creación, publicación y sincronización de ofertas de empleo con portales externos.
+
+python
+Copiar código
+class JobOfferService:
+    def __init__(self, database, external_apis):
+        self.database = database
+        self.external_apis = external_apis
+
+    def create_offer(self, title, description, requirements, salary, location):
+        # Crear una oferta en estado de "Borrador" en la base de datos
+        new_offer = {
+            "title": title,
+            "description": description,
+            "requirements": requirements,
+            "salary": salary,
+            "location": location,
+            "status": "DRAFT"
+        }
+        offer_id = self.database.save("JobOffers", new_offer)
+        return offer_id
+
+    def publish_offer(self, offer_id, portals):
+        # Obtener la oferta de la base de datos
+        offer = self.database.get("JobOffers", offer_id)
+        
+        if offer["status"] != "DRAFT":
+            raise Exception("Solo las ofertas en estado 'Borrador' pueden publicarse.")
+        
+        # Publicar en cada portal seleccionado
+        for portal in portals:
+            api = self.external_apis.get(portal)
+            response = api.publish_job_offer(offer)
+            
+            if response.status_code == 200:
+                offer["status"] = "PUBLISHED"
+            else:
+                offer["status"] = "ERROR"
+                offer["error_message"] = f"Error al publicar en {portal}: {response.error}"
+
+        # Guardar el estado de la oferta en la base de datos
+        self.database.update("JobOffers", offer_id, offer)
+
+    def update_offer(self, offer_id, new_data):
+        # Obtener la oferta actual
+        offer = self.database.get("JobOffers", offer_id)
+        
+        # Actualizar detalles de la oferta
+        for key, value in new_data.items():
+            offer[key] = value
+        
+        # Guardar cambios en la base de datos
+        self.database.update("JobOffers", offer_id, offer)
+
+        # Sincronizar cambios en portales externos si ya fue publicada
+        if offer["status"] == "PUBLISHED":
+            for portal in offer["portals"]:
+                api = self.external_apis.get(portal)
+                response = api.update_job_offer(offer)
+                
+                if response.status_code != 200:
+                    offer["status"] = "SYNC_ERROR"
+                    offer["error_message"] = f"Error de sincronización en {portal}: {response.error}"
+                    self.database.update("JobOffers", offer_id, offer)
+
+    def notify_publishing_status(self, offer_id):
+        # Enviar notificación al reclutador sobre el estado de publicación
+        offer = self.database.get("JobOffers", offer_id)
+        if offer["status"] == "PUBLISHED":
+            message = f"La oferta '{offer['title']}' ha sido publicada exitosamente."
+        else:
+            message = f"Error al publicar la oferta '{offer['title']}'. Verificar el estado en el sistema."
+        NotificationService.send(offer["recruiter_id"], message)
+Explicación del Código
+create_offer: Crea una nueva oferta en la base de datos con estado "Borrador".
+publish_offer: Publica la oferta en los portales externos seleccionados. Si falla en algún portal, actualiza el estado de la oferta y guarda el mensaje de error.
+update_offer: Permite actualizar los datos de una oferta ya existente. Si la oferta está en estado "Publicado", los cambios también se sincronizan con los portales externos.
+notify_publishing_status: Envía una notificación al reclutador con el estado de la publicación, ya sea confirmando la publicación o indicando un error.
+Este pseudocódigo proporciona una guía para implementar la funcionalidad de publicación y gestión de ofertas, abordando la lógica central de sincronización y notificación.
+
 
 
 
